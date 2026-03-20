@@ -9,11 +9,12 @@ const AddPostsForm = () => {
   const [userId, setUserId] = useState("");
 
   const users = useSelector(selectAllUsers);
+  console.log(userId);
 
   const dispatch = useDispatch();
   const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
   const onAddPost = () => {
-    dispatch(postsAdded(title, content));
+    dispatch(postsAdded(title, content, Number(userId)));
     setTitle("");
     setContent("");
   };
@@ -29,7 +30,7 @@ const AddPostsForm = () => {
         </label>
         <input
           id="title"
-          className=" border rounded-lg text-2xl p-2"
+          className=" border rounded-lg text-lg p-2"
           type="text"
           value={title}
           onChange={(e) => {
@@ -37,7 +38,6 @@ const AddPostsForm = () => {
           }}
         />
         <label htmlFor="content" className="text-lg">
-          {" "}
           Content
         </label>
         <textarea
@@ -57,10 +57,10 @@ const AddPostsForm = () => {
           value={userId}
           onChange={(e) => {
             setUserId(e.target.value);
-            console.log(userId);
           }}
           id="author"
         >
+          <option value=""></option>
           {users.map((user) => {
             return (
               <option key={user.id} value={user.id}>
