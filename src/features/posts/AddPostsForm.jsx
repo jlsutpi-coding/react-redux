@@ -18,6 +18,7 @@ const AddPostsForm = () => {
     setTitle("");
     setContent("");
   };
+
   return (
     <div className=" my-5 w-100 mx-auto ">
       <h2 className=" text-2xl my-5 font-bold">Add Post</h2>
