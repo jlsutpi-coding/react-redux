@@ -9,10 +9,11 @@ const AddPostsForm = () => {
   const [userId, setUserId] = useState("");
 
   const users = useSelector(selectAllUsers);
-  console.log(userId);
 
   const dispatch = useDispatch();
+
   const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
+
   const onAddPost = () => {
     dispatch(postsAdded(title, content, Number(userId)));
     setTitle("");

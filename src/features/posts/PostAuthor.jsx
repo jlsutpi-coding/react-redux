@@ -6,6 +6,7 @@ const PostAuthor = ({ userId }) => {
   const users = useSelector(selectAllUsers);
 
   const author = users.find((user) => user.id === userId);
+
   return (
     <span className=" p-2 ">{author ? author.name : "Unknown author"}</span>
   );
