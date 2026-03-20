@@ -8,14 +8,16 @@ const PostsList = () => {
   return (
     <div>
       <h2>Posts</h2>
-      {posts.map((post) => {
-        return (
-          <article key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-          </article>
-        );
-      })}
+      <div className=" flex flex-col gap-3 w-95 mx-auto">
+        {posts.map((post) => {
+          return (
+            <article className=" border rounded-2xl p-2" key={post.id}>
+              <h3 className=" ">{post.title}</h3>
+              <p>{post.content}</p>
+            </article>
+          );
+        })}
+      </div>
     </div>
   );
 };
