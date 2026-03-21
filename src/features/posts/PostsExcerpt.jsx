@@ -8,7 +8,7 @@ const PostsExcerpt = ({ post }) => {
   return (
     <article className=" border rounded-2xl p-2">
       <h3 className=" ">{post.title}</h3>
-      <p>{post.content}</p>
+      <p>{post.body}</p>
       <p>
         <PostAuthor userId={post.userId} />
         <TimeAgo timeStamp={post.date} />

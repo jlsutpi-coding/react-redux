@@ -10,12 +10,20 @@ const initialState = {
   error: null,
 };
 
-// async thunks in redux
+// async thunks for fetching posts
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await axios.get(POSTS_URL);
   return [...response.data];
 });
 
+// async thunks for creating a new post
+export const addNewPost = createAsyncThunk(
+  "posts/addNewPost",
+  async (initialPost) => {
+    const response = await axios.post(POSTS_URL, initialPost);
+    return response.data;
+  },
+);
 const postsSlice = createSlice({
   name: "postSlice",
   initialState,
@@ -77,6 +85,20 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(addNewPost.fulfilled, (state, action) => {
+        action.payload.id = nanoid();
+        action.payload.userId = Number(action.payload.userId);
+        action.payload.date = new Date().toISOString();
+        action.payload.reactions = {
+          thumpsUp: 0,
+          wow: 0,
+          heart: 0,
+          rocket: 0,
+          coffee: 0,
+        };
+        console.log(action.payload);
+        state.posts.push(action.payload);
       });
   },
 });
