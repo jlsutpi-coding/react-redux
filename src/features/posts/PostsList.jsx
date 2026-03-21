@@ -14,9 +14,6 @@ const PostsList = () => {
   const postsStatus = useSelector(getPostsStatus);
   const postsError = useSelector(getPostsError);
 
-  console.log(postsStatus);
-  console.log(posts);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

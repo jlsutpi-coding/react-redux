@@ -5,8 +5,8 @@ import AddPostsForm from "./features/posts/AddPostsForm";
 const App = () => {
   return (
     <div>
-      {/* <Counter /> */} <PostsList />
       <AddPostsForm />
+      <PostsList />
     </div>
   );
 };
