@@ -1,13 +1,21 @@
 import React from "react";
 import PostsList from "./features/posts/PostsList";
 import AddPostsForm from "./features/posts/AddPostsForm";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import SinglePostPage from "./features/posts/SinglePostPage";
 
 const App = () => {
   return (
-    <div>
-      <AddPostsForm />
-      <PostsList />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<PostsList />} />
+        <Route path="post">
+          <Route index element={<AddPostsForm />} />
+          <Route path=":postId" element={<SinglePostPage />} />{" "}
+        </Route>
+      </Route>
+    </Routes>
   );
 };
 
