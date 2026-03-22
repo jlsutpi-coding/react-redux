@@ -10,7 +10,7 @@ const PostsExcerpt = ({ post }) => {
     <article className=" border rounded-2xl p-2">
       <h3 className=" ">{post.title}</h3>
       <p>{post.body}</p>
-      <Link className=" cursor-pointer " to={`/post/${post.id}`}>
+      <Link className=" cursor-pointer underline " to={`/post/${post.id}`}>
         post detail
       </Link>
       <p>

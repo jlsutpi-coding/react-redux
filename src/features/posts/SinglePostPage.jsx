@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectPostById } from "./postsSlice";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import PostAuthor from "./PostAuthor";
+import TimeAgo from "./TimeAgo";
+import ReactionButtons from "./ReactionButtons";
 
 const SinglePostPage = () => {
   // retrieve postId
@@ -17,9 +20,15 @@ const SinglePostPage = () => {
     );
   }
   return (
-    <article>
-      <h2>{post.title}</h2>
+    <article className=" border rounded-2xl p-2">
+      <h3 className=" ">{post.title}</h3>
       <p>{post.body}</p>
+      <Link to={`/post/edit/${post.id}`}> Edit Post</Link>
+      <p>
+        <PostAuthor userId={post.userId} />
+        <TimeAgo timeStamp={post.date} />
+      </p>
+      <ReactionButtons post={post} />
     </article>
   );
 };
