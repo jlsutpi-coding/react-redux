@@ -38,8 +38,7 @@ const PostsList = () => {
 
   return (
     <div>
-      <h2>Posts</h2>
-      <div className=" flex flex-col gap-3 w-95 mx-auto"> {content}</div>
+      <div className=" flex flex-col gap-3 w-95 mx-auto mt-10"> {content}</div>
     </div>
   );
 };

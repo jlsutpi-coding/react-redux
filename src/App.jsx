@@ -2,7 +2,7 @@ import React from "react";
 import PostsList from "./features/posts/PostsList";
 import AddPostsForm from "./features/posts/AddPostsForm";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./layout/Layout";
 import SinglePostPage from "./features/posts/SinglePostPage";
 
 const App = () => {
