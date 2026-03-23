@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { selectPostById } from "./postsSlice";
 import { Link, useParams } from "react-router-dom";
@@ -9,7 +8,6 @@ import ReactionButtons from "./ReactionButtons";
 const SinglePostPage = () => {
   // retrieve postId
   const { postId } = useParams();
-  console.log(postId);
 
   const post = useSelector((state) => selectPostById(state, postId));
   if (!post) {
@@ -20,10 +18,13 @@ const SinglePostPage = () => {
     );
   }
   return (
-    <article className=" border rounded-2xl p-2">
+    <article className=" w-95 mx-auto mt-10 border rounded-2xl p-2">
       <h3 className=" ">{post.title}</h3>
       <p>{post.body}</p>
-      <Link to={`/post/edit/${post.id}`}> Edit Post</Link>
+      <Link to={`/post/edit/${post.id}`} className=" underline">
+        {" "}
+        Edit Post
+      </Link>
       <p>
         <PostAuthor userId={post.userId} />
         <TimeAgo timeStamp={post.date} />
