@@ -10,14 +10,17 @@ const Header = () => {
         <ul className=" flex items-center gap-10">
           <li>
             <Link className=" hover:underline" to={"/"}>
-              {" "}
               Home
             </Link>
           </li>
           <li>
             <Link to={"/post"} className="hover:underline">
-              {" "}
               Post
+            </Link>
+          </li>
+          <li>
+            <Link to={"/user"} className="hover:underline">
+              User
             </Link>
           </li>
         </ul>
