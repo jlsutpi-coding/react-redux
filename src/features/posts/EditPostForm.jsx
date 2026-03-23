@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { selectPostById, updatePost } from "./postsSlice";
+import { deletePost, selectPostById, updatePost } from "./postsSlice";
 import { selectAllUsers } from "../users/usersSlice";
 
 const EditPostForm = () => {
@@ -30,11 +30,11 @@ const EditPostForm = () => {
   const canSave =
     [title, body, userId].every(Boolean) && requestStatus === "idle";
 
-  const onSavePostClick = () => {
+  const onSavePostClick = async () => {
     if (canSave) {
       try {
         setRequestStatus("pending");
-        dispatch(
+        await dispatch(
           updatePost({
             id: post.id,
             title,
@@ -62,6 +62,19 @@ const EditPostForm = () => {
       </option>
     );
   });
+
+  // delete post function
+  const onDeletePost = async () => {
+    try {
+      setRequestStatus("pending");
+      await dispatch(deletePost({ id: post.id })).unwrap();
+      navigate("/");
+    } catch (error) {
+      console.error("Failed to delete the post", error);
+    } finally {
+      setRequestStatus("idle");
+    }
+  };
   return (
     <section>
       <div className=" my-5 w-100 mx-auto ">
@@ -95,21 +108,29 @@ const EditPostForm = () => {
           <select
             className=" text-lg p-2 mb-5 rounded-lg border "
             name=""
-            defaultValue={userId}
+            value={userId}
             onChange={onAuthorChanged}
             id="author"
           >
             <option value=""></option>
             {userOptions}
           </select>
-          <button
-            disabled={!canSave}
-            type="submit"
-            className={`cursor-pointer bg-black rounded-2xl hover:bg-gray-900 text-white p-3 ${canSave ? " bg-black rounded-2xl hover:bg-gray-900" : "bg-gray-400 cursor-not-allowed"}`}
-            onClick={() => onSavePostClick()}
-          >
-            Add Post
-          </button>
+          <div className=" flex items-center gap-3">
+            <button
+              disabled={!canSave}
+              type="submit"
+              className={`cursor-pointer bg-black rounded-2xl hover:bg-gray-900 text-white p-3 ${canSave ? " bg-black rounded-2xl hover:bg-gray-900" : "bg-gray-400 cursor-not-allowed"}`}
+              onClick={() => onSavePostClick()}
+            >
+              Save Post
+            </button>
+            <button
+              onClick={onDeletePost}
+              className=" bg-red-600 hover:bg-red-500 text-white rounded-2xl p-3 cursor-pointer"
+            >
+              Delete Post
+            </button>
+          </div>
         </form>
       </div>
     </section>
