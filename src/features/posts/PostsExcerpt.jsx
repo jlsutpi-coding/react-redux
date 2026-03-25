@@ -1,10 +1,12 @@
+import React from "react";
+
 import { Link } from "react-router-dom";
 
 import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
 import ReactionButtons from "./ReactionButtons";
 
-const PostsExcerpt = ({ post }) => {
+let PostsExcerpt = ({ post }) => {
   return (
     <article className=" border rounded-2xl p-2">
       <h3 className=" ">{post.title}</h3>
@@ -20,5 +22,8 @@ const PostsExcerpt = ({ post }) => {
     </article>
   );
 };
+
+// it allows the component do not render if the porps is not change
+PostsExcerpt = React.memo(PostsExcerpt);
 
 export default PostsExcerpt;
